@@ -1,0 +1,234 @@
+/* OTP Verification Page Styles - Neon Theme */
+
+:root {
+	--neon-cyan: #0ff;
+	--neon-blue: #00f;
+	--accent-green: #0f0;
+	--danger: #ff4444;
+	--bg: rgba(0,0,34,0.75);
+	--panel-radius: 14px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: #000015;
+    color: #fff;
+    text-align: center;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.otp-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.otp-box {
+    background: var(--bg);
+    border: 2px solid var(--neon-cyan);
+    border-radius: var(--panel-radius);
+    padding: 2rem;
+    box-shadow: 0 8px 40px rgba(0,255,255,0.06), inset 0 0 30px rgba(0,0,0,0.2);
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    text-align: center;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 12px rgba(0,255,255,0.12);
+    margin: 0 0 0.75rem 0;
+    font-size: 1.25rem;
+}
+
+.email-display {
+    text-align: center;
+    color: #0ff;
+    font-size: 14px;
+    margin-bottom: 30px;
+    word-break: break-all;
+    opacity: 0.8;
+}
+
+.otp-input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #0ff;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+input#otpInput {
+    display: block;
+    margin: 0.5rem auto 1rem auto;
+    width: min(320px, 100%);
+    padding: 0.85rem 1rem;
+    border-radius: 10px;
+    border: 2px solid var(--neon-cyan);
+    background: rgba(0,0,34,0.9);
+    color: var(--neon-cyan);
+    font-size: 1.4rem;
+    letter-spacing: 0.6rem;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,255,255,0.04);
+}
+
+input#otpInput:focus {
+    outline: none;
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 0 4px rgba(0,255,255,0.06);
+}
+
+.timer {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0ff;
+    font-weight: bold;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+.button-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: #e0e0e0;
+}
+
+.btn-secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.message {
+    text-align: center;
+    min-height: 20px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.message.success {
+    color: #27ae60;
+}
+
+.message.error {
+    color: #e74c3c;
+}
+
+.back-link {
+    text-align: center;
+}
+
+.back-link a {
+    color: #667eea;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.back-link a:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+/* Background animation */
+#bars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bar {
+    width: 2%;
+    height: 50px;
+    background: linear-gradient(to top, #0ff, #00f);
+    animation: neonBar 1.5s infinite alternate;
+}
+
+@keyframes neonBar {
+    from {
+        height: 20%;
+        box-shadow: 0 0 10px #0ff, 0 0 20px #0ff inset;
+    }
+    to {
+        height: 90%;
+        box-shadow: 0 0 40px #0ff, 0 0 80px #0ff inset;
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .otp-box {
+        padding: 30px 20px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .button-group {
+        grid-template-columns: 1fr;
+    }
+}

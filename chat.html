@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Community Chat - Sales Matrix</title>
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/chat.css">
+</head>
+<body>
+
+<div id="bars-container" aria-hidden="true"></div>
+<div id="intro"><h1>Loading chat...</h1></div>
+
+<main id="chat-app" class="hidden">
+  <aside class="explorer">
+    <div class="explorer-header">
+      <input id="explorer-search" class="explorer-search" placeholder="Search users..." />
+      <button id="refreshPresence" class="nav-btn">⟳</button>
+    </div>
+    <div class="explorer-section">
+      <h4>Saved</h4>
+      <div id="savedList" class="user-list"></div>
+    </div>
+    <div class="explorer-section">
+      <h4>All Users</h4>
+      <div id="allUsersList" class="user-list"></div>
+    </div>
+  </aside>
+
+  <section class="chat-panel">
+    <header class="chat-header">
+      <div id="chatUserInfo">
+        <div id="chatAvatar" class="avatar">?</div>
+        <div>
+          <div id="chatName">Select user</div>
+          <div id="chatStatus">offline</div>
+        </div>
+      </div>
+      <button id="saveContactBtn" class="nav-btn hidden">★</button>
+    </header>
+    <div id="messages" class="messages" role="log"></div>
+    <form id="messageForm" class="message-form">
+      <input id="messageInput" type="text" placeholder="Type message..." autocomplete="off" />
+      <button type="submit" id="sendBtn">Send</button>
+    </form>
+  </section>
+</main>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="js/firebase-init.js"></script>
+
+<script src="js/data.js"></script>
+<script src="js/core.js"></script>
+<script src="js/chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart - Sales Matrix</title>
+<link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+<nav class="top-nav">
+    <div class="nav-left"><h1 class="logo">Sales Matrix</h1></div>
+    <button class="nav-btn" onclick="window.location.href='home.html'">← Back to Home</button>
+</nav>
+
+<div style="padding: 40px 20px; max-width: 1000px; margin: 0 auto;">
+    <h1 style="color: #0ff; text-shadow: 0 0 20px #0ff;">Your Cart</h1>
+    <div id="cartItems"></div>
+    <div id="cartSummary" style="margin-top: 30px; padding: 20px; border: 2px solid #0ff; border-radius: 10px;">
+        <h2>Total: $<span id="totalPrice">0</span></h2>
+        <button class="action-btn" onclick="checkout()" style="width: 100%; margin-top: 20px;">Proceed to Checkout</button>
+    </div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script>
+function loadCart() {
+    const cart = getCart();
+    const container = document.getElementById('cartItems');
+    container.innerHTML = '';
+    
+    if(cart.length === 0) {
+        container.innerHTML = '<p style="color: #aaa;">Your cart is empty</p>';
+        return;
+    }
+    
+    cart.forEach(item => {
+        const div = document.createElement('div');
+        div.style.cssText = 'background: rgba(0,0,34,0.7); border: 1px solid #0ff; padding: 15px; margin: 10px 0; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;';
+        div.innerHTML = `
+            <div>
+                <h3 style="margin: 0; color: #0ff;">${item.name}</h3>
+                <p style="margin: 5px 0; color: #aaa;">$${item.price} x ${item.quantity}</p>
+            </div>
+            <div>
+                <p style="color: #0f0; font-weight: bold; margin: 0;">$${(item.price * item.quantity).toFixed(2)}</p>
+                <button onclick="removeFromCart(${item.id}); loadCart(); updateTotal();" class="action-btn" style="margin-top: 10px;">Remove</button>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+    
+    updateTotal();
+}
+
+function updateTotal() {
+    document.getElementById('totalPrice').textContent = getCartPrice().toFixed(2);
+}
+
+function checkout() {
+    const user = getCurrentUser();
+    if(!user) {
+        alert('Please login first');
+        window.location.href = 'login.html';
+        return;
+    }
+    
+    const address = prompt('Enter delivery address:');
+    const phone = prompt('Enter phone number:');
+    
+    if(!address || !phone) return;
+    
+    const items = getCart();
+    const order = createOrder(items, address, phone);
+    
+    localStorage.setItem('cart', JSON.stringify([]));
+    alert(`Order #${order.id} created successfully!`);
+    window.location.href = 'orders.html';
+}
+
+window.addEventListener('load', loadCart);
+</script>
+</body>
+</html>

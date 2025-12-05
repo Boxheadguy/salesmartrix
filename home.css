@@ -1,0 +1,718 @@
+* {
+    box-sizing: border-box;
+}
+
+/* BODY - Christmas */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 25%, #0a0a0a 50%, #1a0000 75%, #0a0a0a 100%);
+    color: #fff;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    line-height: 1.6;
+}
+
+/* Falling snow animation */
+@keyframes snowfall {
+    0% {
+        transform: translateY(-10vh) translateX(0);
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) translateX(100px);
+        opacity: 0;
+    }
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, white, rgba(255,255,255,.2)),
+        radial-gradient(2px 2px at 60px 70px, white, rgba(255,255,255,.5)),
+        radial-gradient(1px 1px at 50px 50px, white, rgba(255,255,255,.1)),
+        radial-gradient(1px 1px at 130px 80px, white, rgba(255,255,255,.4)),
+        radial-gradient(2px 2px at 90px 10px, white, rgba(255,255,255,.3));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: snowfall 10s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* INTRO - Christmas */
+#intro {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(90deg, #c41e3a, #0a5c1a, #c41e3a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: clamp(1.5em, 5vw, 2.5em);
+    z-index: 999;
+    animation: fadeOut 2.3s forwards 2.3s;
+    flex-direction: column;
+    text-shadow: 0 0 20px rgba(255,255,255,0.5);
+}
+
+#intro h1 {
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+#intro::after {
+    content: '🎄 Merry Christmas! 🎄';
+    font-size: 0.8em;
+    margin-top: 1rem;
+    animation: twinkle 1.5s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+}
+
+/* TOP NAVIGATION - Christmas */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 3px solid #c41e3a;
+    border-image: linear-gradient(90deg, #c41e3a, #0a5c1a, #c41e3a) 1;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    gap: 1.5rem;
+    box-shadow: 0 0 20px rgba(196, 30, 58, 0.5);
+}
+
+.nav-left .logo {
+    margin: 0;
+    font-size: clamp(1.3em, 3vw, 1.8em);
+    color: #c41e3a;
+    text-shadow: 0 0 10px #c41e3a, 0 0 20px #0a5c1a;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.nav-center { 
+    flex: 2; 
+    min-width: 200px;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #c41e3a;
+    background: rgba(10, 92, 26, 0.3);
+    color: #fff;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: 0.3s;
+}
+
+.search-bar:focus {
+    outline: none;
+    box-shadow: 0 0 20px #c41e3a, 0 0 30px #0a5c1a inset;
+    background: rgba(10, 92, 26, 0.5);
+}
+
+.search-bar::placeholder {
+    color: #c41e3a;
+    opacity: 0.6;
+}
+
+.nav-right {
+    flex: 1;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    position: relative;
+    min-width: fit-content;
+}
+
+.nav-btn {
+    background: rgba(196, 30, 58, 0.2);
+    border: 2px solid #c41e3a;
+    color: #c41e3a;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.nav-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, #c41e3a, #0a5c1a);
+    transition: 0.3s;
+    z-index: -1;
+}
+
+.nav-btn:hover::before {
+    left: 0;
+}
+
+.nav-btn:hover {
+    color: #fff;
+    box-shadow: 0 0 20px #c41e3a;
+}
+
+.badge {
+    background: #ffd700;
+    border-radius: 50%;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75em;
+    margin-left: 0.5rem;
+    font-weight: bold;
+    color: #c41e3a;
+}
+
+.user-menu {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background: rgba(0, 0, 0, 0.98);
+    backdrop-filter: blur(10px);
+    border: 2px solid #c41e3a;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-top: 0.5rem;
+    min-width: 180px;
+    box-shadow: 0 10px 30px rgba(196, 30, 58, 0.3);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.user-menu button {
+    display: block;
+    width: 100%;
+    background: rgba(10, 92, 26, 0.5);
+    border: 1px solid #c41e3a;
+    color: #c41e3a;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.user-menu button:hover {
+    background: #c41e3a;
+    color: #fff;
+    box-shadow: 0 0 15px #c41e3a;
+}
+
+/* HERO SECTION - Christmas */
+.hero {
+    text-align: center;
+    padding: clamp(3rem, 8vw, 6rem) 2rem;
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.15), rgba(10, 92, 26, 0.15));
+    border-bottom: 2px solid #c41e3a;
+    position: relative;
+    z-index: 10;
+}
+
+.hero h2 {
+    font-size: clamp(1.8em, 5vw, 2.5em);
+    margin: 0 0 1rem 0;
+    color: #c41e3a;
+    text-shadow: 0 0 20px #c41e3a, 0 0 40px #0a5c1a;
+}
+
+.hero p {
+    font-size: clamp(1em, 3vw, 1.3em);
+    margin: 0 0 2rem 0;
+    color: #0a5c1a;
+}
+
+.hero-cta-btn {
+    background: rgba(250, 208, 0, 0.2);
+    border: 2px solid #fad000;
+    color: #fad000;
+    padding: 1rem 2.5rem;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s ease;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: #fad000;
+    transition: 0.3s;
+    z-index: -1;
+}
+
+.hero-cta-btn:hover::before {
+    left: 0;
+}
+
+.hero-cta-btn:hover {
+    color: #000;
+    box-shadow: 0 0 30px #fad000;
+    transform: scale(1.05);
+}
+
+/* FEATURES SECTION - Christmas */
+.features-section {
+    padding: clamp(2rem, 5vw, 4rem) 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.feature-card {
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.3), rgba(10, 92, 26, 0.2));
+    border: 2px solid #c41e3a;
+    border-radius: 15px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(196, 30, 58, 0.1) 0%, transparent 70%);
+    animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20px, 20px); }
+}
+
+.feature-card:hover {
+    box-shadow: 0 0 30px #c41e3a, 0 0 60px #0a5c1a inset;
+    transform: translateY(-10px) scale(1.05);
+    border-color: #fad000;
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.4), rgba(10, 92, 26, 0.3));
+}
+
+.feature-card h3 {
+    color: #c41e3a;
+    margin: 0 0 1rem 0;
+    font-size: 1.5em;
+    text-shadow: 0 0 15px #c41e3a, 0 0 30px #0a5c1a;
+    position: relative;
+    z-index: 2;
+    letter-spacing: 1px;
+}
+
+.feature-card p {
+    color: #aaa;
+    margin: 0;
+    font-size: 1.05em;
+    position: relative;
+    z-index: 2;
+}
+
+/* PRODUCTS SECTION */
+.products-section {
+    padding: clamp(2rem, 5vw, 4rem) 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.products-section h2 {
+    text-align: center;
+    font-size: clamp(1.5em, 4vw, 2em);
+    color: #c41e3a;
+    text-shadow: 0 0 20px #c41e3a;
+    margin-bottom: 3rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(clamp(200px, 25vw, 280px), 1fr));
+    gap: 2rem;
+    animation: fadeInGrid 0.6s ease;
+}
+
+@keyframes fadeInGrid {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.product-card {
+    background: rgba(10, 10, 10, 0.8);
+    border: 2px solid #c41e3a;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    box-shadow: 0 0 30px #c41e3a, 0 0 50px #0a5c1a inset;
+    transform: translateY(-8px);
+    border-color: #fad000;
+}
+
+.product-card h3 {
+    color: #c41e3a;
+    margin: 1rem 0 0.5rem 0;
+    font-size: 1.2em;
+}
+
+.product-card p {
+    color: #aaa;
+    font-size: 0.95em;
+    flex-grow: 1;
+    margin: 0.5rem 0;
+}
+
+.product-price {
+    font-size: 1.8em;
+    color: #fad000;
+    margin: 1rem 0;
+    font-weight: bold;
+}
+
+.product-rating {
+    color: #fad000;
+    margin: 0.5rem 0;
+    letter-spacing: 0.2em;
+}
+
+.add-to-cart-btn {
+    background: rgba(250, 208, 0, 0.2);
+    border: 2px solid #fad000;
+    color: #fad000;
+    padding: 0.75rem 1.5rem;
+    margin-top: auto;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+    width: 100%;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.add-to-cart-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: #fad000;
+    transition: 0.3s;
+    z-index: -1;
+}
+
+.add-to-cart-btn:hover::before {
+    left: 0;
+}
+
+.add-to-cart-btn:hover {
+    color: #000;
+    box-shadow: 0 0 20px #fad000;
+}
+
+/* FOOTER - Christmas */
+.footer {
+    background: rgba(0, 0, 0, 0.95);
+    border-top: 3px solid #c41e3a;
+    padding: 3rem 2rem;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 10;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.footer-col h4 {
+    color: #c41e3a;
+    text-shadow: 0 0 10px #c41e3a;
+    margin-bottom: 1rem;
+}
+
+.footer-col p {
+    color: #aaa;
+    margin: 0.5rem 0;
+}
+
+.footer-col a {
+    color: #c41e3a;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-col a:hover {
+    text-shadow: 0 0 10px #c41e3a;
+}
+
+/* ===== FESTIVE BARS (replaces moving Santa) ======
+   Colored animated bars: green, red, yellow — site-wide decorative stripes
+   Bars are created by js/home.js into #bars-container as .bar elements.
+*/
+#bars-container {
+    position: fixed;
+    top: 12px;
+    left: 0;
+    right: 0;
+    height: 120px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.35%;
+    pointer-events: none;
+    z-index: 5;
+    padding: 0 2%;
+}
+
+.bar {
+    flex: 0 0 1.8%;
+    height: 28%;
+    border-radius: 6px;
+    /* background will be set inline by JS: green/red/yellow */
+    opacity: 0.95;
+    filter: drop-shadow(0 6px 18px rgba(0,0,0,0.6));
+    transform-origin: bottom center;
+    animation: festivePulse 3.5s ease-in-out infinite;
+}
+
+/* staggered pulse */
+.bar:nth-child(3n) { animation-duration: 4s; }
+.bar:nth-child(3n+1) { animation-duration: 3.2s; }
+.bar:nth-child(3n+2) { animation-duration: 3.8s; }
+
+@keyframes festivePulse {
+    0%   { transform: scaleY(0.6); box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
+    50%  { transform: scaleY(1.05) translateY(-8px); box-shadow: 0 18px 40px rgba(0,0,0,0.45); }
+    100% { transform: scaleY(0.6); box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
+}
+
+/* AI Chat widget */
+#ai-chat {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 150;
+    font-family: inherit;
+}
+
+#ai-toggle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid #c41e3a;
+    background: rgba(0,0,0,0.9);
+    color: #c41e3a;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(196,30,58,0.3);
+}
+
+#ai-panel {
+    width: 320px;
+    max-width: calc(100vw - 40px);
+    height: 420px;
+    background: rgba(0,0,0,0.98);
+    border: 2px solid #c41e3a;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(196,30,58,0.2);
+}
+
+#ai-header {
+    padding: 0.6rem 0.8rem;
+    background: rgba(0,0,0,0.8);
+    border-bottom: 1px solid #c41e3a;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #c41e3a;
+}
+
+#ai-messages {
+    padding: 0.6rem;
+    flex: 1;
+    overflow-y: auto;
+    text-align: left;
+    color: #ddd;
+}
+
+.ai-msg {
+    margin: 0.4rem 0;
+    padding: 0.5rem 0.6rem;
+    border-radius: 8px;
+    max-width: 88%;
+    word-break: break-word;
+    line-height: 1.3;
+}
+
+.ai-msg.user {
+    background: rgba(250,208,0,0.08);
+    color: #fad000;
+    margin-left: auto;
+}
+
+.ai-msg.assistant {
+    background: rgba(196,30,58,0.08);
+    color: #c41e3a;
+    margin-right: auto;
+}
+
+#ai-form {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.6rem;
+    border-top: 1px solid rgba(196,30,58,0.1);
+    background: rgba(0,0,0,0.02);
+}
+
+#ai-input {
+    flex: 1;
+    padding: 0.5rem 0.6rem;
+    border: 2px solid #c41e3a;
+    border-radius: 8px;
+    background: rgba(10,92,26,0.3);
+    color: #fff;
+    outline: none;
+}
+
+#ai-send {
+    padding: 0 0.8rem;
+    border: 2px solid #c41e3a;
+    background: #c41e3a;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+/* SLEIGH / SANTA over the bars */
+#santa-sleigh {
+    position: absolute;
+    top: 6px; /* sits slightly below top edge of bars area */
+    left: -10%;
+    z-index: 60; /* above bars */
+    font-size: 2.6rem;
+    pointer-events: none;
+    transform: translateZ(0);
+    filter: drop-shadow(0 8px 18px rgba(0,0,0,0.6));
+    animation: sleighFly 12s linear infinite, sleighBob 1.6s ease-in-out infinite;
+    will-change: transform;
+}
+
+/* move left -> right across the viewport */
+@keyframes sleighFly {
+    0%   { transform: translate3d(-10vw, 0, 0) scale(1); opacity: 0; }
+    8%   { opacity: 1; }
+    50%  { transform: translate3d(50vw, -18px, 0) scale(1.05); } /* cross center with slight lift */
+    92%  { opacity: 1; }
+    100% { transform: translate3d(110vw, 0, 0) scale(0.95); opacity: 0; }
+}
+
+/* subtle up/down bob while flying */
+@keyframes sleighBob {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+/* smaller on narrow screens */
+@media (max-width: 768px) {
+    #santa-sleigh { font-size: 2rem; top: 10px; animation: sleighFly 10s linear infinite, sleighBob 1.6s ease-in-out infinite; }
+}
+@media (max-width: 420px) {
+    #santa-sleigh { font-size: 1.6rem; top: 12px; animation: sleighFly 9s linear infinite, sleighBob 1.6s ease-in-out infinite; }
+}
+
+/* utility */
+.hidden { display: none !important; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .top-nav {
+        flex-wrap: wrap;
+        padding: 0.75rem;
+        gap: 0.75rem;
+    }
+    
+    .nav-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9em;
+    }
+    
+    #santa-sleigh {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-nav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .nav-btn {
+        width: 100%;
+    }
+    
+    #santa-sleigh {
+        font-size: 1.5rem;
+    }
+}
